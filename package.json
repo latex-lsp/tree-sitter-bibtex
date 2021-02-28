@@ -1,0 +1,31 @@
+{
+  "name": "tree-sitter-bibtex",
+  "version": "0.1.0",
+  "description": "Tree-sitter Grammar for BibTeX",
+  "main": "index.js",
+  "scripts": {
+    "build": "tree-sitter generate",
+    "test": "tree-sitter test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/latex-lsp/tree-sitter-bibtex.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "latex",
+    "parser"
+  ],
+  "author": "Patrick Förster <patrick.foerster@outlook.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/latex-lsp/tree-sitter-bibtex/issues"
+  },
+  "homepage": "https://github.com/latex-lsp/tree-sitter-bibtex#readme",
+  "dependencies": {
+    "nan": "^2.14.2"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.18.0"
+  }
+}
