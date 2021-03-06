@@ -27,5 +27,14 @@
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.18.0"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.bibtex",
+      "file-types": [
+        "bib"
+      ],
+      "injection-regex": "bibtex"
+    }
+  ]
 }
