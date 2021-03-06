@@ -1,10 +1,5 @@
 [
   {
-    "type": "comment",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "document",
     "named": true,
     "fields": {},
@@ -68,7 +63,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "entry_type",
             "named": true
           }
         ]
@@ -105,6 +100,16 @@
     "type": "preamble",
     "named": true,
     "fields": {
+      "ty": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "preamble_type",
+            "named": true
+          }
+        ]
+      },
       "value": {
         "multiple": false,
         "required": true,
@@ -127,6 +132,16 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "ty": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string_type",
             "named": true
           }
         ]
@@ -214,15 +229,19 @@
     "named": false
   },
   {
-    "type": "@",
-    "named": false
-  },
-  {
     "type": "brace_word",
     "named": true
   },
   {
     "type": "command",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "entry_type",
     "named": true
   },
   {
@@ -246,7 +265,15 @@
     "named": true
   },
   {
+    "type": "preamble_type",
+    "named": true
+  },
+  {
     "type": "quote_word",
+    "named": true
+  },
+  {
+    "type": "string_type",
     "named": true
   },
   {

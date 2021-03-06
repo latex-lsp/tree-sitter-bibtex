@@ -15,6 +15,12 @@ function ignoreCase(str) {
   );
 }
 
+const IDENTIFIER_FIRST = /[\!\$\&\*\+\-\.\/:;<>\?@\[\]\\\^_`\|\~a-zA-Z]/;
+
+const IDENTIFIER_LATER = /[\!\$\&\*\+\-\.\/:;<>\?@\[\]\\\^_`\|\~a-zA-Z0-9]/;
+
+const IDENTIFIER = seq(IDENTIFIER_FIRST, repeat(IDENTIFIER_LATER));
+
 /*
   Adapted from the PEG grammar given here https://github.com/aclements/biblib
   whitespace is ignored by default (tree-sitter-cli)
@@ -30,12 +36,13 @@ module.exports = grammar({
 
     _command_or_entry: $ => choice($.comment, $.preamble, $.string, $.entry),
 
-    comment: $ => seq('@', ignoreCase('comment')),
+    comment: $ => token(seq('@', ignoreCase('comment'))),
+
+    string_type: $ => token(seq('@', ignoreCase('string'))),
 
     string: $ =>
       seq(
-        '@',
-        field('ty', ignoreCase('string')),
+        field('ty', $.string_type),
         choice(
           seq(
             '{',
@@ -54,20 +61,22 @@ module.exports = grammar({
         )
       ),
 
+    preamble_type: $ => token(seq('@', ignoreCase('preamble'))),
+
     preamble: $ =>
       seq(
-        '@',
-        field('ty', ignoreCase('preamble')),
+        field('ty', $.preamble_type),
         choice(
           seq('{', field('value', $.value), '}'),
           seq('(', field('value', $.value), ')')
         )
       ),
 
+    entry_type: $ => token(seq('@', IDENTIFIER)),
+
     entry: $ =>
       seq(
-        '@',
-        field('ty', $.identifier),
+        field('ty', $.entry_type),
         choice(
           seq(
             '{',
@@ -92,12 +101,7 @@ module.exports = grammar({
 
     field: $ => seq(field('name', $.identifier), '=', field('value', $.value)),
 
-    identifier: $ => {
-      // `scan_identifier` [2210] // tests indicate unicode works too (with xelatex)
-      const first = /[\!\$\&\*\+\-\.\/:;<>\?@\[\]\\\^_`\|\~a-zA-Z]/; // https://regex101.com/r/fAkBEf/1
-      const later = /[\!\$\&\*\+\-\.\/:;<>\?@\[\]\\\^_`\|\~a-zA-Z0-9]/; // basically all visible ASCII except: "#%'(),={}
-      return token(seq(first, repeat(later)));
-    },
+    identifier: $ => token(IDENTIFIER),
 
     value: $ => seq($.token, repeat(seq('#', $.token))),
 

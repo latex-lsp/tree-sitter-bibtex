@@ -43,31 +43,46 @@
       ]
     },
     "comment": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "@"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[cC][oO][mM][mM][eE][nN][tT]"
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[cC][oO][mM][mM][eE][nN][tT]"
+          }
+        ]
+      }
+    },
+    "string_type": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[sS][tT][rR][iI][nN][gG]"
+          }
+        ]
+      }
     },
     "string": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "@"
-        },
-        {
           "type": "FIELD",
           "name": "ty",
           "content": {
-            "type": "PATTERN",
-            "value": "[sS][tT][rR][iI][nN][gG]"
+            "type": "SYMBOL",
+            "name": "string_type"
           }
         },
         {
@@ -142,20 +157,32 @@
           ]
         }
       ]
+    },
+    "preamble_type": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[pP][rR][eE][aA][mM][bB][lL][eE]"
+          }
+        ]
+      }
     },
     "preamble": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "@"
-        },
-        {
           "type": "FIELD",
           "name": "ty",
           "content": {
-            "type": "PATTERN",
-            "value": "[pP][rR][eE][aA][mM][bB][lL][eE]"
+            "type": "SYMBOL",
+            "name": "preamble_type"
           }
         },
         {
@@ -207,19 +234,43 @@
         }
       ]
     },
+    "entry_type": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[\\!\\$\\&\\*\\+\\-\\.\\/:;<>\\?@\\[\\]\\\\\\^_`\\|\\~a-zA-Z]"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[\\!\\$\\&\\*\\+\\-\\.\\/:;<>\\?@\\[\\]\\\\\\^_`\\|\\~a-zA-Z0-9]"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
     "entry": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "STRING",
-          "value": "@"
-        },
         {
           "type": "FIELD",
           "name": "ty",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "entry_type"
           }
         },
         {
