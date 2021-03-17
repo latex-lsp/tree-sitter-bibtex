@@ -1,5 +1,39 @@
 [
   {
+    "type": "command",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "command_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "brace_word",
+          "named": true
+        },
+        {
+          "type": "command",
+          "named": true
+        },
+        {
+          "type": "quote_word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "document",
     "named": true,
     "fields": {},
@@ -233,7 +267,7 @@
     "named": true
   },
   {
-    "type": "command",
+    "type": "command_name",
     "named": true
   },
   {

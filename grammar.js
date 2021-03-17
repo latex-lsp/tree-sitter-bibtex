@@ -135,6 +135,14 @@ module.exports = grammar({
 
     quote_word: $ => /[^\"\{\}\\\s]+/,
 
-    command: $ => /\\([^\r\n]|[@a-zA-Z]+\*?)?/,
+    command: $ =>
+      prec.right(
+        seq(
+          field('name', $.command_name),
+          optional(seq('{', repeat($._quote_balanced), '}'))
+        )
+      ),
+
+    command_name: $ => /\\([^\r\n]|[@a-zA-Z]+\*?)?/,
   },
 });
