@@ -1,0 +1,87 @@
+================================================================================
+Simple string (quote)
+================================================================================
+
+@string{foo = "Hello World"}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (string
+    (entry_type)
+    (identifier)
+    (value
+      (quote_group
+        (word)
+        (word)))))
+
+================================================================================
+Simple string (curly)
+================================================================================
+
+@string{foo = {Hello World}}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (string
+    (entry_type)
+    (identifier)
+    (value
+      (curly_group
+        (word)
+        (word)))))
+
+================================================================================
+String concatenation
+================================================================================
+
+@string{foo = {foo}}
+
+@string{bar = {bar}}
+
+@string{foo-bar = foo # bar}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (string
+    (entry_type)
+    (identifier)
+    (value
+      (curly_group
+        (word))))
+  (string
+    (entry_type)
+    (identifier)
+    (value
+      (curly_group
+        (word))))
+  (string
+    (entry_type)
+    (identifier)
+    (value
+      (identifier)
+      (identifier))))
+
+================================================================================
+String with italic text
+================================================================================
+
+@string{foo = {This is \textit{italic} text}}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (string
+    (entry_type)
+    (identifier)
+    (value
+      (curly_group
+        (word)
+        (word)
+        (command
+          (command_name)
+          (curly_group
+            (word)))
+        (word)))))

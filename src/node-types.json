@@ -1,9 +1,31 @@
 [
   {
+    "type": "_object",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "comment",
+        "named": true
+      },
+      {
+        "type": "entry",
+        "named": true
+      },
+      {
+        "type": "preamble",
+        "named": true
+      },
+      {
+        "type": "string",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "command",
     "named": true,
     "fields": {
-      "name": {
+      "command_name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -19,22 +41,44 @@
       "required": false,
       "types": [
         {
-          "type": "brace_word",
+          "type": "curly_group",
           "named": true
         },
         {
-          "type": "command",
-          "named": true
-        },
-        {
-          "type": "quote_word",
+          "type": "mixed_group",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "document",
+    "type": "comment",
+    "named": true,
+    "fields": {
+      "at": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "@",
+            "named": false
+          }
+        ]
+      },
+      "entry_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "entry_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "curly_group",
     "named": true,
     "fields": {},
     "children": {
@@ -42,23 +86,58 @@
       "required": false,
       "types": [
         {
-          "type": "comment",
+          "type": "command",
           "named": true
         },
         {
-          "type": "entry",
+          "type": "curly_group",
           "named": true
         },
         {
-          "type": "junk",
+          "type": "displayed_equation",
           "named": true
         },
         {
-          "type": "preamble",
+          "type": "inline_formula",
           "named": true
         },
         {
-          "type": "string",
+          "type": "word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "displayed_equation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "command",
+          "named": true
+        },
+        {
+          "type": "command_name",
+          "named": true
+        },
+        {
+          "type": "curly_group",
+          "named": true
+        },
+        {
+          "type": "displayed_equation",
+          "named": true
+        },
+        {
+          "type": "inline_formula",
+          "named": true
+        },
+        {
+          "type": "word",
           "named": true
         }
       ]
@@ -68,6 +147,26 @@
     "type": "entry",
     "named": true,
     "fields": {
+      "at": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "@",
+            "named": false
+          }
+        ]
+      },
+      "entry_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "entry_type",
+            "named": true
+          }
+        ]
+      },
       "field": {
         "multiple": true,
         "required": false,
@@ -83,21 +182,7 @@
         "required": true,
         "types": [
           {
-            "type": "key_brace",
-            "named": true
-          },
-          {
-            "type": "key_paren",
-            "named": true
-          }
-        ]
-      },
-      "ty": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "entry_type",
+            "type": "key",
             "named": true
           }
         ]
@@ -108,7 +193,17 @@
     "type": "field",
     "named": true,
     "fields": {
-      "name": {
+      "eq": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          }
+        ]
+      },
+      "key": {
         "multiple": false,
         "required": true,
         "types": [
@@ -131,69 +226,7 @@
     }
   },
   {
-    "type": "preamble",
-    "named": true,
-    "fields": {
-      "ty": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "preamble_type",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "value",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "string",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "ty": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "string_type",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "value",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "token",
+    "type": "inline_formula",
     "named": true,
     "fields": {},
     "children": {
@@ -201,26 +234,203 @@
       "required": false,
       "types": [
         {
-          "type": "brace_word",
+          "type": "command",
           "named": true
         },
+        {
+          "type": "command_name",
+          "named": true
+        },
+        {
+          "type": "curly_group",
+          "named": true
+        },
+        {
+          "type": "displayed_equation",
+          "named": true
+        },
+        {
+          "type": "inline_formula",
+          "named": true
+        },
+        {
+          "type": "word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mixed_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
         {
           "type": "command",
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "curly_group",
           "named": true
         },
         {
-          "type": "number",
+          "type": "displayed_equation",
           "named": true
         },
         {
-          "type": "quote_word",
+          "type": "inline_formula",
+          "named": true
+        },
+        {
+          "type": "word",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "preamble",
+    "named": true,
+    "fields": {
+      "at": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "@",
+            "named": false
+          }
+        ]
+      },
+      "entry_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "entry_type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quote_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "command",
+          "named": true
+        },
+        {
+          "type": "curly_group",
+          "named": true
+        },
+        {
+          "type": "displayed_equation",
+          "named": true
+        },
+        {
+          "type": "inline_formula",
+          "named": true
+        },
+        {
+          "type": "word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_object",
+          "named": true
+        },
+        {
+          "type": "junk",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string",
+    "named": true,
+    "fields": {
+      "at": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "@",
+            "named": false
+          }
+        ]
+      },
+      "entry_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "entry_type",
+            "named": true
+          }
+        ]
+      },
+      "eq": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          }
+        ]
+      },
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -232,7 +442,19 @@
       "required": true,
       "types": [
         {
-          "type": "token",
+          "type": "curly_group",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "quote_group",
           "named": true
         }
       ]
@@ -244,6 +466,14 @@
   },
   {
     "type": "#",
+    "named": false
+  },
+  {
+    "type": "$",
+    "named": false
+  },
+  {
+    "type": "$$",
     "named": false
   },
   {
@@ -263,15 +493,19 @@
     "named": false
   },
   {
-    "type": "brace_word",
-    "named": true
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
   },
   {
     "type": "command_name",
-    "named": true
-  },
-  {
-    "type": "comment",
     "named": true
   },
   {
@@ -283,31 +517,19 @@
     "named": true
   },
   {
+    "type": "integer",
+    "named": true
+  },
+  {
     "type": "junk",
     "named": true
   },
   {
-    "type": "key_brace",
+    "type": "key",
     "named": true
   },
   {
-    "type": "key_paren",
-    "named": true
-  },
-  {
-    "type": "number",
-    "named": true
-  },
-  {
-    "type": "preamble_type",
-    "named": true
-  },
-  {
-    "type": "quote_word",
-    "named": true
-  },
-  {
-    "type": "string_type",
+    "type": "word",
     "named": true
   },
   {

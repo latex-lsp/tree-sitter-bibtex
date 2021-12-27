@@ -19,7 +19,7 @@ fn main() {
     println!("cargo:rerun-if-changed={}", scanner_path.to_str().unwrap());
     */
 
-    c_config.compile("parser");
+    c_config.compile("tree-sitter-bibtex");
     println!("cargo:rerun-if-changed={}", parser_path.to_str().unwrap());
 
     // If your language uses an external scanner written in C++,
