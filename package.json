@@ -4,8 +4,11 @@
   "description": "Tree-sitter Grammar for BibTeX",
   "main": "bindings/node",
   "scripts": {
-    "build": "tree-sitter generate",
-    "test": "tree-sitter test"
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "test:update": "tree-sitter test --update",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
   },
   "repository": {
     "type": "git",
@@ -14,7 +17,16 @@
   "keywords": [
     "tree-sitter",
     "latex",
+    "bibtex",
     "parser"
+  ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
   ],
   "author": "Patrick Förster <patrick.foerster@outlook.de>",
   "license": "MIT",
@@ -23,10 +35,21 @@
   },
   "homepage": "https://github.com/latex-lsp/tree-sitter-bibtex#readme",
   "dependencies": {
-    "nan": "^2.14.2"
+    "node-addon-api": "^8.0.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.22.4"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "tree-sitter-cli": "0.19.4"
+    "prettier": "^3.0.3",
+    "tree-sitter-cli": "0.25.3",
+    "prebuildify": "^6.0.0"
   },
   "tree-sitter": [
     {
