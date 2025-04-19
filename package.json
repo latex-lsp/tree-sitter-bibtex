@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/latex-lsp/tree-sitter-bibtex#readme",
   "dependencies": {
-    "nan": "^2.14.2"
+    "nan": "2.22.2"
   },
   "devDependencies": {
-    "tree-sitter-cli": "0.19.4"
+    "tree-sitter-cli": "0.25.3"
   },
   "tree-sitter": [
     {
